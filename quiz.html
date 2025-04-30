@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Trânsito - Simulado</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: http: https:">
+</head>
+<body>
+    <!-- Header com Navegação -->
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="login-area">
+                    <div class="auth-buttons">
+                        <button id="btn-login" class="auth-btn">Login</button>
+                        <button id="btn-signup" class="auth-btn">Inscreva-se</button>
+                        <div class="user-info escondido">
+                            <span class="user-name"></span>
+                            <button id="btn-logout" class="auth-btn">Sair</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="assets/images/logo.png" alt="Logo Quiz Trânsito">
+                        <h1 class="site-title">Quiz de Trânsito</h1>
+                    </div>
+                    <div class="menu-hamburguer">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav class="menu-principal">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="quiz.html" class="nav-link active">Quiz</a>
+                        <a href="ranking.html" class="nav-link">Ranking</a>
+                        <a href="placas.html" class="nav-link">Placas</a>
+                        <a href="flashcards.html" class="nav-link">Flashcards</a>
+                        <a href="courses.html" class="nav-link">Cursos</a>
+                        <a href="marketplace.html" class="nav-link">Loja</a>
+                        <a href="admin-marketplace.html" class="nav-link admin-link escondido">Admin</a>
+                        <a href="sobre.html" class="nav-link">Sobre Nós</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo do Quiz -->
+    <main class="container">
+        <!-- Wizard de Seleção do Simulado -->
+        <div id="wizard-quiz">
+            <!-- Etapa 1: Escolha do Modo -->
+            <div id="etapa-modo" class="wizard-etapa">
+                <!-- 1. Título destacado em caixa alta -->
+                <div class="wizard-titulo-box">
+                    <span class="wizard-titulo">ESCOLHA O MODO DE RESPOSTA</span>
+                </div>
+                <!-- 2. Espaço -->
+                <div style="height: 2rem;"></div>
+                <!-- 3. Opções lado a lado -->
+                <div class="modo-opcoes">
+                    <div class="modo-opcao" data-modo="padrao">
+                        <div class="modo-icon">📚</div>
+                        <h3>Modo Padrão</h3>
+                        <p>Simulado tradicional sem limite de tempo por questão</p>
+                    </div>
+                    <div class="modo-opcao" data-modo="desafio">
+                        <div class="modo-icon">⚡</div>
+                        <h3>Modo Desafio</h3>
+                        <p>30 segundos por questão com música de suspense</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Etapa 2: Tipo de Feedback (inicialmente escondida) -->
+            <div id="etapa-feedback" class="wizard-etapa escondido">
+                <!-- Título destacado -->
+                <div class="wizard-titulo-box">
+                    <span class="wizard-titulo">ESCOLHA O TIPO DE FEEDBACK</span>
+                </div>
+                <div style="height: 2rem;"></div>
+                <div class="modo-opcoes">
+                    <div class="modo-opcao feedback-opcao" data-feedback="imediato">
+                        <div class="modo-icon">✓</div>
+                        <h3>Ver resposta após cada questão</h3>
+                        <p>Receba feedback imediato após responder cada questão</p>
+                    </div>
+                    <div class="modo-opcao feedback-opcao" data-feedback="final">
+                        <div class="modo-icon">🎯</div>
+                        <h3>Ver respostas somente no final</h3>
+                        <p>Veja todas as respostas após completar o simulado</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Etapa 3: Iniciar (inicialmente escondida) -->
+            <div id="etapa-iniciar" class="wizard-etapa escondido">
+                <button id="iniciar-simulado" class="btn-iniciar">Iniciar Simulado</button>
+            </div>
+        </div>
+
+        <!-- Card do Quiz -->
+        <div id="quiz" class="quiz-card escondido">
+            <!-- Elemento de áudio para o modo desafio -->
+            <audio id="suspenseMusic" preload="auto" loop>
+                <source src="assets/audio/suspense.mp3" type="audio/mp3">
+            </audio>
+            
+            <div class="quiz-header">
+                <div id="progresso">Questão 1 de 30</div>
+                <div id="tempo">60:00</div>
+            </div>
+
+            <div id="questao-container">
+                <div class="questao-header">
+                    <h3 id="pergunta"></h3>
+                    <span class="dificuldade"></span>
+                </div>
+                <div id="alternativas" class="alternativas-container">
+                    <!-- Alternativas serão inseridas via JavaScript -->
+                </div>
+            </div>
+
+            <button id="confirmar" class="btn-quiz" disabled>Confirmar Resposta</button>
+
+            <div id="feedback" class="escondido">
+                <div id="resposta-feedback" class="escondido">
+                    <div class="feedback-icon"></div>
+                    <p class="feedback-texto"></p>
+                </div>
+                <div class="explicacao-container">
+                    <h3>Explicação:</h3>
+                    <p id="explicacao"></p>
+                </div>
+                <button id="proxima" class="btn-quiz">Próxima Questão</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Sobre o Quiz de Trânsito</h3>
+                    <p>Aplicativo desenvolvido para auxiliar no estudo para a prova teórica do DETRAN.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Úteis</h3>
+                    <ul>
+                        <li><a href="https://www.gov.br/prf/pt-br" target="_blank">Polícia Rodoviária Federal</a></li>
+                        <li><a href="https://www.gov.br/infraestrutura/pt-br/assuntos/transito/conteudo-denatran" target="_blank">DENATRAN</a></li>
+                        <li><a href="https://www.gov.br/infraestrutura/pt-br/assuntos/transito/arquivos-senatran/legislacao/contran" target="_blank">CONTRAN</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p>Em caso de dúvidas ou sugestões, entre em contato:</p>
+                    <a href="mailto:contato@quiztransito.com">contato@quiztransito.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Quiz de Trânsito - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Login -->
+    <div id="login-modal" class="modal escondido">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Entrar</button>
+                    <a href="#" id="forgot-password">Esqueceu a senha?</a>
+                </div>
+                <div class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Signup -->
+    <div id="signup-modal" class="modal escondido">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Criar Conta</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Nome</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-phone">Telefone</label>
+                    <input type="tel" id="signup-phone" pattern="\(\d{2}\)\s\d{5}-\d{4}" placeholder="(99) 99999-9999" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-whatsapp">WhatsApp</label>
+                    <input type="tel" id="signup-whatsapp" pattern="\(\d{2}\)\s\d{5}-\d{4}" placeholder="(99) 99999-9999">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Senha</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirmar senha</label>
+                    <input type="password" id="signup-confirm-password" required>
+                </div>
+                <button type="submit" class="btn-submit">Criar conta</button>
+                <div class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts na ordem correta -->
+    <script src="js/permissions.js"></script>
+    <script src="shared.js"></script>
+    <script src="auth.js"></script>
+    <script src="menu.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Garantir que todas as dependências estejam carregadas antes de inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AuthState !== 'undefined') {
+                AuthState.checkAuthState();
+            } else {
+                console.error('Dependências não carregadas corretamente');
+            }
+        });
+    </script>
+</body>
+</html> 

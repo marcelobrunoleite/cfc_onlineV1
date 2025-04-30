@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - Quiz de Trânsito</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ranking.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: http: https:">
+</head>
+<body>
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="login-area">
+                    <div class="auth-buttons">
+                        <button id="btn-login" class="auth-btn">Login</button>
+                        <button id="btn-signup" class="auth-btn">Inscreva-se</button>
+                        <div class="user-info escondido">
+                            <span class="user-name"></span>
+                            <button id="btn-logout" class="auth-btn">Sair</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="assets/images/logo.png" alt="Logo Quiz Trânsito">
+                        <h1 class="site-title">Quiz de Trânsito</h1>
+                    </div>
+                    <div class="menu-hamburguer">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav class="menu-principal">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="quiz.html" class="nav-link">Quiz</a>
+                        <a href="ranking.html" class="nav-link active">Ranking</a>
+                        <a href="placas.html" class="nav-link">Placas</a>
+                        <a href="flashcards.html" class="nav-link">Flashcards</a>
+                        <a href="courses.html" class="nav-link">Cursos</a>
+                        <a href="marketplace.html" class="nav-link">Loja</a>
+                        <a href="admin-marketplace.html" class="nav-link admin-link escondido">Admin</a>
+                        <a href="sobre.html" class="nav-link">Sobre Nós</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="site-main">
+        <div class="container">
+            <h1 class="ranking-title">Ranking dos Melhores</h1>
+            
+            <!-- Pódio -->
+            <div class="podium-container">
+                <div class="podium-places">
+                    <div class="podium-place second">
+                        <div class="avatar">👤</div>
+                        <div class="medal">🥈</div>
+                        <span class="name">Vazio</span>
+                        <span class="score">0.0%</span>
+                    </div>
+                    <div class="podium-place first">
+                        <div class="crown">👑</div>
+                        <div class="medal">🥇</div>
+                        <span class="name">Vazio</span>
+                        <span class="score">0.0%</span>
+                    </div>
+                    <div class="podium-place third">
+                        <div class="avatar">👤</div>
+                        <div class="medal">🥉</div>
+                        <span class="name">Vazio</span>
+                        <span class="score">0.0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas -->
+            <div class="stats-container">
+                <h2>Estatísticas Gerais</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total de Simulados</span>
+                        <span class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Média Geral</span>
+                        <span class="stat-value">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Taxa de Aprovação</span>
+                        <span class="stat-value">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico de Desempenho -->
+            <div class="performance-container">
+                <h2>Seu Desempenho</h2>
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Top 10 Jogadores -->
+            <div class="top-players-container">
+                <h2>Top 10 Jogadores</h2>
+                <div class="ranking-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Posição</th>
+                                <th>Jogador</th>
+                                <th>Pontuação</th>
+                                <th>Simulados</th>
+                                <th>Média</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ranking-list">
+                            <!-- Preenchido via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Login -->
+    <div id="login-modal" class="modal escondido">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Entrar</button>
+                    <a href="#" id="forgot-password">Esqueceu a senha?</a>
+                </div>
+                <div class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Signup -->
+    <div id="signup-modal" class="modal escondido">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Criar Conta</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Nome</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-phone">Telefone</label>
+                    <input type="tel" id="signup-phone" pattern="\(\d{2}\)\s\d{5}-\d{4}" placeholder="(99) 99999-9999" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-whatsapp">WhatsApp</label>
+                    <input type="tel" id="signup-whatsapp" pattern="\(\d{2}\)\s\d{5}-\d{4}" placeholder="(99) 99999-9999">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Senha</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirmar senha</label>
+                    <input type="password" id="signup-confirm-password" required>
+                </div>
+                <button type="submit" class="btn-submit">Criar conta</button>
+                <div class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts na ordem correta -->
+    <script src="js/permissions.js"></script>
+    <script src="shared.js"></script>
+    <script src="auth.js"></script>
+    <script src="menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="ranking.js"></script>
+    <script>
+        // Garantir que todas as dependências estejam carregadas antes de inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AuthState !== 'undefined') {
+                AuthState.checkAuthState();
+            } else {
+                console.error('Dependências não carregadas corretamente');
+            }
+        });
+    </script>
+</body>
+</html> 
