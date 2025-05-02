@@ -1,0 +1,84 @@
+{
+    "regulamentacao": [
+        {
+            "id": "R-1",
+            "nome": "Parada obrigatória",
+            "descricao": "Indica ao condutor que deve parar seu veículo antes de entrar ou cruzar a via/pista.",
+            "imagem": "assets/images/placas/regulamentacao/r-1-placa-pare-parada-obrigat-ria.webp"
+        },
+        {
+            "id": "R-2",
+            "nome": "Dê a preferência",
+            "descricao": "Indica ao condutor que deve dar preferência aos veículos que circulam na via em que vai entrar ou cruzar.",
+            "imagem": "assets/images/placas/regulamentacao/r-2-placa-d--a-prefer-ncia-.webp"
+        },
+        {
+            "id": "R-3",
+            "nome": "Sentido proibido",
+            "descricao": "Indica ao condutor a proibição de seguir em frente ou entrar na via/pista.",
+            "imagem": "assets/images/placas/regulamentacao/r-3-placa-sentido-proibido-.webp"
+        },
+        {
+            "id": "R-4a",
+            "nome": "Proibido virar à esquerda",
+            "descricao": "Indica ao condutor a proibição de realizar conversão à esquerda.",
+            "imagem": "assets/images/placas/regulamentacao/r-4a-placa-proibido-virar---esquerda-.webp"
+        },
+        {
+            "id": "R-4b",
+            "nome": "Proibido virar à direita",
+            "descricao": "Indica ao condutor a proibição de realizar conversão à direita.",
+            "imagem": "assets/images/placas/regulamentacao/r-4b-placa-proibido-virar---direita.webp"
+        },
+        {
+            "id": "R-10",
+            "nome": "Proibido trânsito de veículos automotores",
+            "descricao": "Proíbe a circulação de veículos automotores na via, como carros, motos e caminhões.",
+            "imagem": "assets/images/placas/regulamentacao/r-10-placa-proibido-tr-nsito-de-ve-culos-automotores-.webp"
+        },
+        {
+            "id": "R-11",
+            "nome": "Proibido trânsito de veículos de tração animal",
+            "descricao": "Proíbe a circulação de veículos de tração animal na via, como carroças e charretes.",
+            "imagem": "assets/images/placas/regulamentacao/r-11-placa-proibido-tr-nsito-de-ve-culos-de-tra-o-animal-.webp"
+        },
+        {
+            "id": "R-19",
+            "nome": "Velocidade máxima permitida",
+            "descricao": "Regulamenta o limite máximo de velocidade em que o veículo pode circular na pista ou faixa.",
+            "imagem": "assets/images/placas/regulamentacao/r-19---50km-h-placa-velocidade-m-xima-permitida-.webp"
+        }
+    ],
+    "advertencia": [
+        {
+            "id": "A-1a",
+            "nome": "Curva acentuada à esquerda",
+            "descricao": "Adverte o condutor sobre a existência de curva acentuada à esquerda.",
+            "imagem": "assets/images/placas/advertencia/A-1a.png"
+        },
+        {
+            "id": "A-1b",
+            "nome": "Curva acentuada à direita",
+            "descricao": "Adverte o condutor sobre a existência de curva acentuada à direita.",
+            "imagem": "assets/images/placas/advertencia/A-1b.png"
+        },
+        {
+            "id": "A-2a",
+            "nome": "Curva à esquerda",
+            "descricao": "Adverte o condutor sobre a existência de curva à esquerda.",
+            "imagem": "assets/images/placas/advertencia/A-2a.png"
+        },
+        {
+            "id": "A-2b",
+            "nome": "Curva à direita",
+            "descricao": "Adverte o condutor sobre a existência de curva à direita.",
+            "imagem": "assets/images/placas/advertencia/A-2b.png"
+        },
+        {
+            "id": "A-3a",
+            "nome": "Pista sinuosa à esquerda",
+            "descricao": "Adverte o condutor sobre a existência de via com série de curvas próximas, iniciando à esquerda.",
+            "imagem": "assets/images/placas/advertencia/A-3a.png"
+        }
+    ]
+} 

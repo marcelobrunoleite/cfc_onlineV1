@@ -24,40 +24,74 @@ const AuthState = {
     },
 
     updateUIForLoggedUser(user) {
+        // Elementos de autenticação
         const authButtons = document.querySelector('.auth-buttons');
+        const btnLogin = document.getElementById('btn-login');
+        const btnSignup = document.getElementById('btn-signup');
         const userInfo = document.querySelector('.user-info');
         const userName = document.querySelector('.user-name');
+        const btnLogout = document.getElementById('btn-logout');
         const adminLink = document.querySelector('.admin-link');
-        
-        if (authButtons) {
-            document.getElementById('btn-login')?.classList.add('escondido');
-            document.getElementById('btn-signup')?.classList.add('escondido');
-        }
-        
+
+        // Esconder botões de login/signup
+        if (btnLogin) btnLogin.classList.add('escondido');
+        if (btnSignup) btnSignup.classList.add('escondido');
+
+        // Mostrar informações do usuário
         if (userInfo) {
             userInfo.classList.remove('escondido');
+            userInfo.style.display = 'flex';
+        }
+
+        // Atualizar nome do usuário
+        if (userName) {
             userName.textContent = `Olá, ${user.name}`;
         }
-        
+
+        // Mostrar botão de logout
+        if (btnLogout) {
+            btnLogout.classList.remove('escondido');
+            btnLogout.style.display = 'block';
+        }
+
+        // Mostrar link de admin se necessário
         if (adminLink && user.role === 'admin') {
             adminLink.classList.remove('escondido');
         }
     },
 
     updateUIForLoggedOutUser() {
+        // Elementos de autenticação
         const authButtons = document.querySelector('.auth-buttons');
+        const btnLogin = document.getElementById('btn-login');
+        const btnSignup = document.getElementById('btn-signup');
         const userInfo = document.querySelector('.user-info');
+        const btnLogout = document.getElementById('btn-logout');
         const adminLink = document.querySelector('.admin-link');
-        
-        if (authButtons) {
-            document.getElementById('btn-login')?.classList.remove('escondido');
-            document.getElementById('btn-signup')?.classList.remove('escondido');
+
+        // Mostrar botões de login/signup
+        if (btnLogin) {
+            btnLogin.classList.remove('escondido');
+            btnLogin.style.display = 'block';
         }
-        
+        if (btnSignup) {
+            btnSignup.classList.remove('escondido');
+            btnSignup.style.display = 'block';
+        }
+
+        // Esconder informações do usuário
         if (userInfo) {
             userInfo.classList.add('escondido');
+            userInfo.style.display = 'none';
         }
-        
+
+        // Esconder botão de logout
+        if (btnLogout) {
+            btnLogout.classList.add('escondido');
+            btnLogout.style.display = 'none';
+        }
+
+        // Esconder link de admin
         if (adminLink) {
             adminLink.classList.add('escondido');
         }

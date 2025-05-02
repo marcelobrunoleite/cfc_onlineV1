@@ -157,8 +157,17 @@ class Auth {
             if (user) {
                 this.currentUser = user;
                 localStorage.setItem('currentUser', JSON.stringify(user));
+                
+                // Atualizar UI local
                 this.updateAuthUI();
+                
+                // Disparar evento de mudança de estado
+                document.dispatchEvent(new CustomEvent('authStateChanged', {
+                    detail: { user: user }
+                }));
+                
                 this.closeModal(document.getElementById('login-modal'));
+                
                 if (user.role === 'admin') {
                     window.location.href = 'admin-marketplace.html';
                 }
@@ -218,10 +227,19 @@ class Auth {
     }
 
     logout() {
-        localStorage.removeItem('currentUser');
         this.currentUser = null;
+        localStorage.removeItem('currentUser');
+        
+        // Atualizar UI local
         this.updateAuthUI();
-        window.location.reload();
+        
+        // Disparar evento de mudança de estado
+        document.dispatchEvent(new CustomEvent('authStateChanged', {
+            detail: { user: null }
+        }));
+        
+        // Redirecionar para a página inicial
+        window.location.href = 'index.html';
     }
 
     checkAdminAccess() {
