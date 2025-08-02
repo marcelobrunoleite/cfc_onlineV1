@@ -836,9 +836,11 @@ body {
 }
 
 .error-message {
-    color: #ff4444;
-    margin: 1rem 0;
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0.4rem 0;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-weight: 400;
 }
 
 .escondido {
@@ -4416,17 +4418,24 @@ body.scrolling-card {
 }
 
 .error-message {
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid #ff4444;
-    color: #ff4444;
-    padding: 1rem;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.4rem 0.6rem;
+    border-radius: 3px;
     text-align: center;
-    margin: 1rem 0;
+    margin: 0.4rem 0;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    font-weight: 400;
 }
 
 .error-message p {
-    margin: 0.5rem 0;
+    margin: 0.2rem 0;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    font-weight: 400;
 }
 
 /* Estilos para os botões de navegação dos flashcards */
