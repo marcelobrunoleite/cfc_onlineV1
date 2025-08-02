@@ -54,31 +54,51 @@
             "id": "A-1a",
             "nome": "Curva acentuada à esquerda",
             "descricao": "Adverte o condutor sobre a existência de curva acentuada à esquerda.",
-            "imagem": "assets/images/placas/advertencia/A-1a.png"
+            "imagem": "assets/images/placas/regulamentacao/r-1-placa-pare-parada-obrigat-ria.webp"
         },
         {
             "id": "A-1b",
             "nome": "Curva acentuada à direita",
             "descricao": "Adverte o condutor sobre a existência de curva acentuada à direita.",
-            "imagem": "assets/images/placas/advertencia/A-1b.png"
+            "imagem": "assets/images/placas/regulamentacao/r-2-placa-d--a-prefer-ncia-.webp"
         },
         {
             "id": "A-2a",
             "nome": "Curva à esquerda",
             "descricao": "Adverte o condutor sobre a existência de curva à esquerda.",
-            "imagem": "assets/images/placas/advertencia/A-2a.png"
+            "imagem": "assets/images/placas/regulamentacao/r-3-placa-sentido-proibido-.webp"
         },
         {
             "id": "A-2b",
             "nome": "Curva à direita",
             "descricao": "Adverte o condutor sobre a existência de curva à direita.",
-            "imagem": "assets/images/placas/advertencia/A-2b.png"
+            "imagem": "assets/images/placas/regulamentacao/r-4a-placa-proibido-virar---esquerda-.webp"
         },
         {
             "id": "A-3a",
             "nome": "Pista sinuosa à esquerda",
             "descricao": "Adverte o condutor sobre a existência de via com série de curvas próximas, iniciando à esquerda.",
-            "imagem": "assets/images/placas/advertencia/A-3a.png"
+            "imagem": "assets/images/placas/regulamentacao/r-4b-placa-proibido-virar---direita.webp"
+        }
+    ],
+    "indicacao": [
+        {
+            "id": "I-1",
+            "nome": "Posto de combustível",
+            "descricao": "Indica a localização de posto de abastecimento de combustível.",
+            "imagem": "assets/images/placas/regulamentacao/r-10-placa-proibido-tr-nsito-de-ve-culos-automotores-.webp"
+        },
+        {
+            "id": "I-2",
+            "nome": "Restaurante",
+            "descricao": "Indica a localização de restaurante ou lanchonete.",
+            "imagem": "assets/images/placas/regulamentacao/r-11-placa-proibido-tr-nsito-de-ve-culos-de-tra-o-animal-.webp"
+        },
+        {
+            "id": "I-3",
+            "nome": "Hotel",
+            "descricao": "Indica a localização de hotel ou pousada.",
+            "imagem": "assets/images/placas/regulamentacao/r-19---50km-h-placa-velocidade-m-xima-permitida-.webp"
         }
     ]
 } 

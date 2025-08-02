@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken');
 
 // Configuração do Firebase
 const firebaseService = require('./services/firebaseService');
+const simulationService = require('./services/simulationService');
 const app = express();
 
 // Configuração de logs
@@ -169,6 +170,73 @@ app.get('/api/profile', authenticateToken, async (req, res) => {
     } catch (error) {
         logger.error('Erro ao buscar perfil:', error);
         res.status(500).json({ error: `Erro ao buscar perfil: ${error.message}` });
+    }
+});
+
+// Rotas de Simulados
+app.post('/api/simulations', authenticateToken, async (req, res) => {
+    try {
+        const simulationData = req.body;
+        const simulation = await simulationService.saveSimulationResult(req.user.userId, simulationData);
+        
+        res.status(201).json({
+            message: 'Simulado salvo com sucesso',
+            simulation
+        });
+    } catch (error) {
+        logger.error('Erro ao salvar simulado:', error);
+        res.status(500).json({ error: `Erro ao salvar simulado: ${error.message}` });
+    }
+});
+
+app.get('/api/simulations', authenticateToken, async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 10;
+        const simulations = await simulationService.getUserSimulations(req.user.userId, limit);
+        
+        res.json(simulations);
+    } catch (error) {
+        logger.error('Erro ao buscar simulados:', error);
+        res.status(500).json({ error: `Erro ao buscar simulados: ${error.message}` });
+    }
+});
+
+app.get('/api/simulations/statistics', authenticateToken, async (req, res) => {
+    try {
+        const statistics = await simulationService.getUserStatistics(req.user.userId);
+        
+        res.json(statistics);
+    } catch (error) {
+        logger.error('Erro ao buscar estatísticas:', error);
+        res.status(500).json({ error: `Erro ao buscar estatísticas: ${error.message}` });
+    }
+});
+
+app.get('/api/simulations/ranking', async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 20;
+        const ranking = await simulationService.getGlobalRanking(limit);
+        
+        res.json(ranking);
+    } catch (error) {
+        logger.error('Erro ao buscar ranking:', error);
+        res.status(500).json({ error: `Erro ao buscar ranking: ${error.message}` });
+    }
+});
+
+app.get('/api/simulations/:id', authenticateToken, async (req, res) => {
+    try {
+        const simulation = await simulationService.getSimulation(req.params.id);
+        
+        // Verificar se o usuário é dono do simulado
+        if (simulation.userId !== req.user.userId) {
+            return res.status(403).json({ error: 'Acesso negado' });
+        }
+        
+        res.json(simulation);
+    } catch (error) {
+        logger.error('Erro ao buscar simulado:', error);
+        res.status(500).json({ error: `Erro ao buscar simulado: ${error.message}` });
     }
 });
 

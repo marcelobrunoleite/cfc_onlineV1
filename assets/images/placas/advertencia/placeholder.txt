@@ -1,0 +1,12 @@
+Esta pasta contém as imagens das placas de advertência.
+
+Para adicionar as imagens corretas, você pode:
+1. Copiar as imagens das placas de advertência para esta pasta
+2. Ou usar imagens de placeholder temporárias
+
+As imagens devem seguir o padrão de nomenclatura:
+- A-1a.png
+- A-1b.png
+- A-2a.png
+- A-2b.png
+- A-3a.png 

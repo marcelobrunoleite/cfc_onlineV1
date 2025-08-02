@@ -100,6 +100,10 @@ async function setupFirestoreCollections() {
         console.log('7️⃣ Verificando coleção "flashcards"...');
         console.log('✅ Coleção "flashcards" será criada automaticamente quando necessário\n');
 
+        // 8. Coleção: user_simulations (para dados dos simulados)
+        console.log('8️⃣ Verificando coleção "user_simulations"...');
+        console.log('✅ Coleção "user_simulations" será criada automaticamente quando necessário\n');
+
         console.log('🎉 Configuração das coleções concluída com sucesso!');
         console.log('\n📊 Resumo das coleções criadas:');
         console.log('   - users (criada automaticamente)');
@@ -109,6 +113,7 @@ async function setupFirestoreCollections() {
         console.log('   - user_progress (criada automaticamente)');
         console.log('   - user_scores (criada automaticamente)');
         console.log('   - flashcards (criada automaticamente)');
+        console.log('   - user_simulations (criada automaticamente)');
 
     } catch (error) {
         console.error('❌ Erro na configuração:', error.message);

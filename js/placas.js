@@ -1,7 +1,7 @@
 // Carrega os dados das placas do arquivo JSON
 let placasData = {};
 
-fetch('../data/placas.json')
+fetch('data/placas.json')
     .then(response => response.json())
     .then(data => {
         placasData = data;
