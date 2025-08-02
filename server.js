@@ -10,10 +10,8 @@ const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// TODO: Configurar Firebase aqui
-// const { initializeApp } = require('firebase/app');
-// const { getAuth } = require('firebase/auth');
-// const { getFirestore } = require('firebase/firestore');
+// Configuração do Firebase
+const firebaseService = require('./services/firebaseService');
 const app = express();
 
 // Configuração de logs
@@ -75,14 +73,8 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-// Rotas da API - TEMPORARIAMENTE DESABILITADAS PARA MIGRAÇÃO FIREBASE
+// Rotas da API - IMPLEMENTADAS COM FIREBASE
 app.post('/api/register', async (req, res) => {
-    res.status(503).json({ 
-        error: 'Sistema em manutenção - Migração para Firebase em andamento',
-        message: 'Esta funcionalidade será restaurada em breve'
-    });
-    
-    /* TODO: Implementar com Firebase
     try {
         const { name, email, password, phone, whatsapp } = req.body;
         
@@ -91,55 +83,93 @@ app.post('/api/register', async (req, res) => {
             return res.status(400).json({ error: 'Campos obrigatórios não preenchidos' });
         }
 
-        // TODO: Implementar verificação de email com Firebase
-        // TODO: Implementar criação de usuário com Firebase
-        // TODO: Implementar geração de token JWT
+        // Verificar se o email já existe
+        const emailExists = await firebaseService.checkEmailExists(email);
+        if (emailExists) {
+            return res.status(400).json({ error: 'Email já cadastrado' });
+        }
 
+        // Criar usuário com Firebase
+        const userData = {
+            name,
+            phone: phone || '',
+            whatsapp: whatsapp || phone || '',
+            role: 'user'
+        };
+
+        const user = await firebaseService.registerUser(email, password, userData);
+
+        // Gerar token JWT
+        const token = jwt.sign(
+            { userId: user.uid, email: user.email, role: user.role },
+            process.env.JWT_SECRET || 'default-secret-key',
+            { expiresIn: '24h' }
+        );
+
+        res.status(201).json({
+            message: 'Usuário criado com sucesso',
+            token,
+            user: {
+                id: user.uid,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });
     } catch (error) {
         logger.error('Erro no registro:', error);
-        res.status(500).json({ error: 'Erro ao criar usuário' });
+        res.status(500).json({ error: `Erro ao criar usuário: ${error.message}` });
     }
-    */
 });
 
 app.post('/api/login', async (req, res) => {
-    res.status(503).json({ 
-        error: 'Sistema em manutenção - Migração para Firebase em andamento',
-        message: 'Esta funcionalidade será restaurada em breve'
-    });
-    
-    /* TODO: Implementar com Firebase
     try {
         const { email, password } = req.body;
 
-        // TODO: Implementar autenticação com Firebase Auth
-        // TODO: Implementar verificação de senha
-        // TODO: Implementar geração de token JWT
+        if (!email || !password) {
+            return res.status(400).json({ error: 'Email e senha são obrigatórios' });
+        }
 
+        // Autenticar com Firebase
+        const user = await firebaseService.loginUser(email, password);
+
+        // Gerar token JWT
+        const token = jwt.sign(
+            { userId: user.uid, email: user.email, role: user.role },
+            process.env.JWT_SECRET || 'default-secret-key',
+            { expiresIn: '24h' }
+        );
+
+        res.json({
+            token,
+            user: {
+                id: user.uid,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });
     } catch (error) {
         logger.error('Erro no login:', error);
-        res.status(500).json({ error: 'Erro ao fazer login' });
+        res.status(401).json({ error: `Erro ao fazer login: ${error.message}` });
     }
-    */
 });
 
 // Rota protegida de exemplo
 app.get('/api/profile', authenticateToken, async (req, res) => {
-    res.status(503).json({ 
-        error: 'Sistema em manutenção - Migração para Firebase em andamento',
-        message: 'Esta funcionalidade será restaurada em breve'
-    });
-    
-    /* TODO: Implementar com Firebase
     try {
-        // TODO: Implementar busca de perfil com Firebase Firestore
-        // TODO: Implementar verificação de usuário
+        const userProfile = await firebaseService.getUserProfile(req.user.userId);
 
+        res.json({
+            id: req.user.userId,
+            email: req.user.email,
+            role: req.user.role,
+            ...userProfile
+        });
     } catch (error) {
         logger.error('Erro ao buscar perfil:', error);
-        res.status(500).json({ error: 'Erro ao buscar perfil' });
+        res.status(500).json({ error: `Erro ao buscar perfil: ${error.message}` });
     }
-    */
 });
 
 // Tratamento de erros
