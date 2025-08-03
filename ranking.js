@@ -125,10 +125,19 @@ function setupPerformanceChart(userId) {
     const performanceData = {
         labels: userResults.map(r => formatarData(r.date)),
         datasets: [{
-            label: 'Média de Acertos',
+            label: 'Percentual de Acertos (%)',
             data: userResults.map(r => r.score),
             borderColor: '#00fff2',
             backgroundColor: 'rgba(0, 255, 242, 0.1)',
+            borderWidth: 2,
+            pointBackgroundColor: '#00fff2',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 8,
+            pointHoverBackgroundColor: '#ffffff',
+            pointHoverBorderColor: '#00fff2',
+            pointHoverBorderWidth: 3,
             tension: 0.4
         }]
     };
@@ -143,15 +152,36 @@ function setupPerformanceChart(userId) {
                     labels: {
                         color: '#ffffff'
                     }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const percentual = context.parsed.y.toFixed(1);
+                            const acertos = Math.round((context.parsed.y / 100) * 30); // Assumindo 30 questões por simulado
+                            return [
+                                `Percentual de Acertos: ${percentual}%`,
+                                `Questões Acertadas: ${acertos}/30`
+                            ];
+                        }
+                    }
                 }
             },
             scales: {
                 y: {
                     beginAtZero: true,
+                    max: 100,
                     grid: {
                         color: 'rgba(255, 255, 255, 0.1)'
                     },
                     ticks: {
+                        color: '#ffffff',
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Percentual de Acertos (%)',
                         color: '#ffffff'
                     }
                 },
@@ -160,6 +190,11 @@ function setupPerformanceChart(userId) {
                         color: 'rgba(255, 255, 255, 0.1)'
                     },
                     ticks: {
+                        color: '#ffffff'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data do Simulado',
                         color: '#ffffff'
                     }
                 }

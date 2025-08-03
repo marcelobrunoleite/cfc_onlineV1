@@ -42,6 +42,9 @@
     position: relative;
     background: rgba(10, 10, 31, 0.8);
     border-radius: 10px;
+    overflow: hidden;
+    word-wrap: break-word;
+    min-height: 200px;
 }
 
 /* Primeiro Lugar */
@@ -68,6 +71,13 @@
 .podium-place.first .name {
     color: #FFD700;
     font-size: 1.5rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    padding: 0 0.5rem;
+    word-wrap: break-word;
+    line-height: 1.2;
 }
 
 .podium-place.first .score {
@@ -78,10 +88,11 @@
 /* Segundo Lugar */
 .podium-place.second {
     order: 1;
-    height: 250px;
+    height: 280px;
     border: 2px solid #C0C0C0; /* Prata */
     box-shadow: 0 0 15px rgba(192, 192, 192, 0.3);
     z-index: 2;
+    min-height: 280px;
 }
 
 .podium-place.second .medal {
@@ -90,15 +101,27 @@
 
 .podium-place.second .name {
     color: #C0C0C0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    padding: 0 0.5rem;
+    word-wrap: break-word;
+    line-height: 1.2;
+    margin: 0.5rem 0;
+    display: block;
 }
 
 /* Terceiro Lugar */
 .podium-place.third {
     order: 3;
-    height: 200px;
+    height: 240px;
     border: 2px solid #CD7F32; /* Bronze */
     box-shadow: 0 0 15px rgba(205, 127, 50, 0.3);
     z-index: 1;
+    overflow: visible;
+    word-wrap: break-word;
+    min-height: 240px;
 }
 
 .podium-place.third .medal {
@@ -107,6 +130,16 @@
 
 .podium-place.third .name {
     color: #CD7F32;
+    font-size: 1rem;
+    max-width: 100%;
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: normal;
+    padding: 0 0.5rem;
+    word-wrap: break-word;
+    line-height: 1.2;
+    margin: 0.5rem 0;
+    display: block;
 }
 
 /* Animações */
