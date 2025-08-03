@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketplace - Quiz de Trânsito</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: http: https:">
 </head>
 <body>
     <!-- Header comum -->
@@ -212,10 +215,16 @@
     <script>
         // Garantir que todas as dependências estejam carregadas antes de inicializar
         document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AuthState !== 'undefined') {
+                AuthState.checkAuthState();
+            } else {
+                console.error('Dependências não carregadas corretamente');
+            }
+            
             if (typeof Cart !== 'undefined' && typeof PaymentService !== 'undefined') {
                 window.marketplace = new Marketplace();
             } else {
-                console.error('Dependências não carregadas corretamente');
+                console.error('Dependências do marketplace não carregadas corretamente');
             }
         });
     </script>

@@ -55,9 +55,10 @@ function filtrarPlacas(termo) {
         const placaElement = document.createElement('div');
         placaElement.className = 'placa-item';
         placaElement.innerHTML = `
+            <span class="placa-codigo">${placa.id}</span>
             <img src="${placa.imagem}" alt="${placa.nome}" class="placa-imagem">
             <div class="placa-info">
-                <h3>${placa.id} - ${placa.nome}</h3>
+                <h3>${placa.nome}</h3>
                 <p>${placa.descricao}</p>
             </div>
         `;

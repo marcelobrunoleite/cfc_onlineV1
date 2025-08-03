@@ -9,48 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupPerformanceChart(currentUser.id);
     updateStatistics();
 
-    // Configuração do menu mobile
-    function setupMobileMenu() {
-        const menuHamburguer = document.querySelector('.menu-hamburguer');
-        const menuPrincipal = document.querySelector('.menu-principal');
-        const body = document.body;
-        
-        if (!menuHamburguer || !menuPrincipal) return;
-
-        // Criar overlay
-        const overlay = document.createElement('div');
-        overlay.className = 'menu-overlay';
-        body.appendChild(overlay);
-
-        // Toggle menu
-        menuHamburguer.addEventListener('click', () => {
-            menuHamburguer.classList.toggle('ativo');
-            menuPrincipal.classList.toggle('ativo');
-            overlay.classList.toggle('ativo');
-            body.style.overflow = menuPrincipal.classList.contains('ativo') ? 'hidden' : '';
-        });
-
-        // Fechar menu ao clicar no overlay
-        overlay.addEventListener('click', () => {
-            menuHamburguer.classList.remove('ativo');
-            menuPrincipal.classList.remove('ativo');
-            overlay.classList.remove('ativo');
-            body.style.overflow = '';
-        });
-
-        // Fechar menu ao clicar em um link
-        menuPrincipal.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                menuHamburguer.classList.remove('ativo');
-                menuPrincipal.classList.remove('ativo');
-                overlay.classList.remove('ativo');
-                body.style.overflow = '';
-            });
-        });
-    }
-
-    // Chamar a função de setup do menu
-    setupMobileMenu();
+    // Configuração do menu mobile - Removida para evitar conflito com menu.js
 });
 
 function carregarRanking() {

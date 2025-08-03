@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: http: https:">
 </head>
 <body>
     <!-- Header com Login e Navegação -->
@@ -116,24 +118,6 @@
         </div>
     </div>
 
-    <!-- Banner Carrossel -->
-    <section class="banner-carrossel">
-        <div class="carrossel-container">
-            <div class="carrossel-slide">
-                <img src="assets/images/banner/banner1.jpg" alt="Banner 1">
-            </div>
-            <div class="carrossel-slide">
-                <img src="assets/images/banner/banner2.jpg" alt="Banner 2">
-            </div>
-            <div class="carrossel-slide">
-                <img src="assets/images/banner/banner3.jpg" alt="Banner 3">
-            </div>
-            <button class="carrossel-btn prev">❮</button>
-            <button class="carrossel-btn next">❯</button>
-            <div class="carrossel-dots"></div>
-        </div>
-    </section>
-
     <!-- Conteúdo Principal -->
     <main class="site-main">
         <div class="container">
@@ -203,41 +187,13 @@
     <script src="menu.js"></script>
     <script src="carousel.js"></script>
     <script>
+        // Garantir que todas as dependências estejam carregadas antes de inicializar
         document.addEventListener('DOMContentLoaded', function() {
-            // Inicialização do menu mobile
-            const menuHamburguer = document.querySelector('.menu-hamburguer');
-            const menuPrincipal = document.querySelector('.menu-principal');
-            const body = document.body;
-
-            // Criar overlay se não existir
-            let overlay = document.querySelector('.menu-overlay');
-            if (!overlay) {
-                overlay = document.createElement('div');
-                overlay.className = 'menu-overlay';
-                body.appendChild(overlay);
+            if (typeof AuthState !== 'undefined') {
+                AuthState.checkAuthState();
+            } else {
+                console.error('Dependências não carregadas corretamente');
             }
-
-            // Função para alternar menu
-            function toggleMenu() {
-                menuHamburguer.classList.toggle('ativo');
-                menuPrincipal.classList.toggle('ativo');
-                overlay.classList.toggle('ativo');
-                body.style.overflow = menuPrincipal.classList.contains('ativo') ? 'hidden' : '';
-            }
-
-            // Event Listeners
-            menuHamburguer.addEventListener('click', function(e) {
-                e.stopPropagation();
-                toggleMenu();
-            });
-
-            overlay.addEventListener('click', toggleMenu);
-
-            menuPrincipal.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', toggleMenu);
-            });
-
-            // Código do carrossel existente...
         });
     </script>
 </body>

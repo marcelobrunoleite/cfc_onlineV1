@@ -16,9 +16,6 @@ let timerIntervalo;
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM carregado');
     
-    // Inicializar menu mobile primeiro
-    setupMobileMenu();
-    
     // Identificar página atual
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     console.log('Página atual:', currentPage);
@@ -40,41 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function setupMobileMenu() {
-    const menuHamburguer = document.querySelector('.menu-hamburguer');
-    const menuPrincipal = document.querySelector('.menu-principal');
-    
-    if (!menuHamburguer || !menuPrincipal) {
-        console.log('Elementos do menu não encontrados');
-        return;
-    }
-
-    // Criar overlay
-    const overlay = document.createElement('div');
-    overlay.className = 'menu-overlay';
-    document.body.appendChild(overlay);
-
-    // Toggle menu ao clicar no hambúrguer
-    menuHamburguer.addEventListener('click', (e) => {
-        e.stopPropagation(); // Impedir propagação do clique
-        toggleMenu();
-    });
-
-    // Fechar menu ao clicar no overlay
-    overlay.addEventListener('click', toggleMenu);
-
-    // Fechar menu ao clicar em links
-    menuPrincipal.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', toggleMenu);
-    });
-
-    function toggleMenu() {
-        menuHamburguer.classList.toggle('ativo');
-        menuPrincipal.classList.toggle('ativo');
-        overlay.classList.toggle('ativo');
-        document.body.style.overflow = menuPrincipal.classList.contains('ativo') ? 'hidden' : '';
-    }
-}
+// Função setupMobileMenu removida para evitar conflito com menu.js
 
 function setupNavigation() {
     // Configurar links de navegação
