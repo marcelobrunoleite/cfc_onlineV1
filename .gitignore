@@ -49,4 +49,7 @@ coverage/
 
 # Arquivos de backup
 *.bak
-*.backup 
+*.backup
+
+# Configurações sensíveis
+config/openai.js 

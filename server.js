@@ -56,6 +56,9 @@ app.use(morgan('combined', {
 // Middleware para parsear JSON
 app.use(express.json());
 
+// Servir arquivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Middleware de autenticação
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
@@ -238,6 +241,11 @@ app.get('/api/simulations/:id', authenticateToken, async (req, res) => {
         logger.error('Erro ao buscar simulado:', error);
         res.status(500).json({ error: `Erro ao buscar simulado: ${error.message}` });
     }
+});
+
+// Rota para SPA (Single Page Application)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Tratamento de erros

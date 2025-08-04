@@ -9,7 +9,9 @@
     "build": "webpack --mode production",
     "test": "jest",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "firebase deploy --only hosting",
+    "deploy:hybrid": "npm run lint && npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

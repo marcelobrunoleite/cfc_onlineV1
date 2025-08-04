@@ -151,31 +151,9 @@ const AuthState = {
     },
 
     setupNavigationInterception() {
-        // Interceptar todos os cliques em links
-        document.addEventListener('click', (e) => {
-            const link = e.target.closest('a');
-            if (link && link.href && link.href.startsWith(window.location.origin)) {
-                e.preventDefault();
-                const href = link.href;
-                
-                // Verificar autenticação antes de navegar
-                const currentUser = localStorage.getItem('currentUser');
-                if (currentUser) {
-                    try {
-                        const user = JSON.parse(currentUser);
-                        if (href.includes('admin-marketplace.html') && user.role !== 'admin') {
-                            this.showNotification('Acesso negado. Apenas administradores podem acessar esta página.', 'error');
-                            return;
-                        }
-                    } catch (error) {
-                        console.error('Erro ao verificar permissões:', error);
-                    }
-                }
-                
-                // Navegar para a página
-                window.location.href = href;
-            }
-        });
+        // Remover interceptação de links para permitir funcionamento normal
+        // A proteção será feita apenas na página de destino
+        console.log('Navegação livre habilitada');
     },
 
     protectRoutes(user) {
