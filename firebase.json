@@ -4,11 +4,36 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "public",
+    "public": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "functions/**",
+      "server.js",
+      "package.json",
+      "package-lock.json",
+      "README.md",
+      "DEPLOY_HYBRID.md",
+      "deploy-hybrid.sh",
+      "deploy-hybrid.ps1",
+      "production-config.js",
+      ".eslintrc.js",
+      "env.example",
+      "jest.config.js",
+      "tsconfig.json",
+      "next-env.d.ts",
+      "*.log",
+      "error.log",
+      "combined.log",
+      "access.log",
+      "public/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
